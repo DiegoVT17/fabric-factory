@@ -125,6 +125,7 @@ public class Main extends JFrame implements ActionListener {
 		mnManten.add(mntmConTela);
 		
 		mntmModTela = new JMenuItem("Modificar Tela");
+		mntmModTela.addActionListener(this);
 		mnManten.add(mntmModTela);
 		
 		mntmListTela = new JMenuItem("Listar Tela");
@@ -166,6 +167,9 @@ public class Main extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmModTela) {
+			actionPerformedMntmModTela(e);
+		}
 		if (e.getSource() == mntmConTela) {
 			actionPerformedMntmConTela(e);
 		}
@@ -183,5 +187,11 @@ public class Main extends JFrame implements ActionListener {
 		ConsultarTela ct = new ConsultarTela();
 		ct.setLocationRelativeTo(this);
 		ct.setVisible(true);
+	}
+	
+	protected void actionPerformedMntmModTela(ActionEvent e) {
+		ModificarTela mt = new ModificarTela();
+		mt.setLocationRelativeTo(this);
+		mt.setVisible(true);
 	}
 }
