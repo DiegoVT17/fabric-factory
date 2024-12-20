@@ -161,6 +161,7 @@ public class Vender extends JFrame implements ActionListener {
 		
 		// ejecutar contadores para reporte
 		execCounters(codIndex, cantMet, totalPay);
+		impTotalGen += totalPay;
 		
 		printVoucher(codIndex, cantMet, partPay, salePay, totalPay);
 	}
@@ -194,26 +195,41 @@ public class Vender extends JFrame implements ActionListener {
 			ventas0++;
 			cantMetros0 += cantMet;
 			impTotal0 += totalPay;
+			if (cantMet > cantidadTotalOptima) {
+				cantVentOpt0 += cantMet;
+			}
 			break;
 		case 1:
 			ventas1++;
 			cantMetros1 += cantMet;
 			impTotal1 += totalPay;
+			if (cantMet > cantidadTotalOptima) {
+				cantVentOpt1 += cantMet;
+			}
 			break;
 		case 2:
 			ventas2++;
 			cantMetros2 += cantMet;
 			impTotal2 += totalPay;
+			if (cantMet > cantidadTotalOptima) {
+				cantVentOpt2 += cantMet;
+			}
 			break;
 		case 3:
 			ventas3++;
 			cantMetros3 += cantMet;
 			impTotal3 += totalPay;
+			if (cantMet > cantidadTotalOptima) {
+				cantVentOpt3 += cantMet;
+			}
 			break;
 		default:
 			ventas4++;
 			cantMetros4 += cantMet;
 			impTotal4 += totalPay;
+			if (cantMet > cantidadTotalOptima) {
+				cantVentOpt4 += cantMet;
+			}
 			break;
 		}
 	}

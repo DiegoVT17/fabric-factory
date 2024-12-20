@@ -81,7 +81,11 @@ public class GenerarReportes extends JFrame implements ActionListener {
 		txtS = new JTextArea();
 		txtS.setFont(new Font("Victor Mono SemiBold", Font.PLAIN, 13));
 		scpS.setViewportView(txtS);
+	
+		cboTipRep.setSelectedIndex(0);
 	}
+	
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cboTipRep) {
 			actionPerformedCboTipRep(e);
@@ -91,7 +95,70 @@ public class GenerarReportes extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		dispose();
 	}
+	
 	protected void actionPerformedCboTipRep(ActionEvent e) {
+		int tipoRep;
+		
+		tipoRep = getRepIndex();
+		printRep(tipoRep);
 	}
+	
+	int getRepIndex() {
+		return cboTipRep.getSelectedIndex();
+	}
+	
+	void print(String cad) {
+		txtS.append(cad + "\n");
+	}
+	
+	void printRep(int tipRep) {
+		switch (tipRep) {
+		case 0:
+			printRepTelas();
+			break;
+		case 1:
+			printRepOpt();
+		default:
+			break;
+		}
+	}
+	
+	void printRepTelas() {
+		txtS.setText("Ventas por Telas\n\n");
+		
+		telasInfo(codigo0, descripcion0, ventas0, cantMetros0, impTotal0);
+		telasInfo(codigo1, descripcion1, ventas1, cantMetros1, impTotal1);
+		telasInfo(codigo2, descripcion2, ventas2, cantMetros2, impTotal2);
+		telasInfo(codigo3, descripcion3, ventas3, cantMetros3, impTotal3);
+		telasInfo(codigo4, descripcion4, ventas4, cantMetros4, impTotal4);
+		
+		print("\nImporte total acumulado general : " + impTotalGen);
+	}
+	
+	void telasInfo(String cod, String desc, double cantVent, double cantMetVend, double totalAc) {
+		print("Codigo \t\t\t: " + cod);
+		print("Descripcion \t\t\t: " + desc);
+		print("Cantidad total de ventas \t: " + cantVent);
+		print("Cantidad total de metros vendidos :" + cantMetVend);
+		print("Importe total acumulado \t: " + totalAc + "\n");
+	}
+	
+	void printRepOpt() {
+		txtS.setText("TELAS CON VENTA OPTIMA\n\n");
+		
+		ventOptInfo(codigo0, descripcion0, cantVentOpt0);
+		ventOptInfo(codigo1, descripcion1, cantVentOpt1);
+		ventOptInfo(codigo2, descripcion2, cantVentOpt2);
+		ventOptInfo(codigo3, descripcion3, cantVentOpt3);
+		ventOptInfo(codigo4, descripcion4, cantVentOpt4);
+	}
+	
+	void ventOptInfo(String cod, String desc, double ventOpt) {
+		print("Codigo \t\t\t: " + cod);
+		print("Descripcion \t\t: " + desc);
+		print("Cantidad total de metros vendidos : " + ventOpt + "\n");
+	}
+	
 }

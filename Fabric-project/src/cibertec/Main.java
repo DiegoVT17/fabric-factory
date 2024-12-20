@@ -78,7 +78,8 @@ public class Main extends JFrame implements ActionListener {
 	// contadores
 	public static int ventas0, ventas1, ventas2, ventas3, ventas4;
 	public static double cantMetros0, cantMetros1, cantMetros2, cantMetros3, cantMetros4;
-	public static double impTotal0, impTotal1, impTotal2, impTotal3, impTotal4;
+	public static double impTotal0, impTotal1, impTotal2, impTotal3, impTotal4, impTotalGen;
+	public static double cantVentOpt0, cantVentOpt1, cantVentOpt2, cantVentOpt3, cantVentOpt4;
 	
 	private JMenuBar menuBar;
 	private JMenu mnArchivo;
