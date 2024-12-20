@@ -46,6 +46,7 @@ public class ListarTela extends JFrame implements ActionListener {
 	public ListarTela() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 150, 550, 350);
+		setTitle("Listar Telas");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

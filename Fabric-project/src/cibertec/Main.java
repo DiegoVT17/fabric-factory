@@ -10,6 +10,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -83,6 +89,7 @@ public class Main extends JFrame implements ActionListener {
 	private JMenuItem mntmVentOpt;
 	private JMenuItem mntmConfPreSor;
 	private JMenuItem mntmAcercaDe;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -104,8 +111,10 @@ public class Main extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Main() {
+		setBackground(new Color(255, 255, 255));
+		setForeground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 150, 700, 500);
+		setBounds(450, 150, 705, 505);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -136,6 +145,7 @@ public class Main extends JFrame implements ActionListener {
 		menuBar.add(mnVentas);
 		
 		mntmVender = new JMenuItem("Vender");
+		mntmVender.addActionListener(this);
 		mnVentas.add(mntmVender);
 		
 		mntmGenReport = new JMenuItem("Generar Reporte");
@@ -166,8 +176,17 @@ public class Main extends JFrame implements ActionListener {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(Main.class.getResource("/imagenes/store2.jpg")));
+		lblNewLabel.setBounds(-12, 0, 698, 441);
+		contentPane.add(lblNewLabel);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmVender) {
+			actionPerformedMntmVender(e);
+		}
 		if (e.getSource() == mntmListTela) {
 			actionPerformedMntmListTela(e);
 		}
@@ -203,5 +222,11 @@ public class Main extends JFrame implements ActionListener {
 		ListarTela lt = new ListarTela();
 		lt.setLocationRelativeTo(this);
 		lt.setVisible(true);
+	}
+	
+	protected void actionPerformedMntmVender(ActionEvent e) {
+		Vender vd = new Vender();
+		vd.setLocationRelativeTo(this);
+		vd.setVisible(true);
 	}
 }
