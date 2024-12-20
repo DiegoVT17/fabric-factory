@@ -70,8 +70,16 @@ public class Main extends JFrame implements ActionListener {
 	public static String obsequio = "USB";
 
 	public static int numeroClienteSorpresa = 5;
-
+	
 	public static String premioSorpresa = "Una agenda";
+	
+	public static int clienteCont = 0;
+	
+	// contadores
+	public static int ventas0, ventas1, ventas2, ventas3, ventas4;
+	public static double cantMetros0, cantMetros1, cantMetros2, cantMetros3, cantMetros4;
+	public static double impTotal0, impTotal1, impTotal2, impTotal3, impTotal4;
+	
 	private JMenuBar menuBar;
 	private JMenu mnArchivo;
 	private JMenuItem mntmSalir;
@@ -149,6 +157,7 @@ public class Main extends JFrame implements ActionListener {
 		mnVentas.add(mntmVender);
 		
 		mntmGenReport = new JMenuItem("Generar Reporte");
+		mntmGenReport.addActionListener(this);
 		mnVentas.add(mntmGenReport);
 		
 		mnConfig = new JMenu("Configuracion");
@@ -184,6 +193,9 @@ public class Main extends JFrame implements ActionListener {
 		contentPane.add(lblNewLabel);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmGenReport) {
+			actionPerformedMntmGenReport(e);
+		}
 		if (e.getSource() == mntmVender) {
 			actionPerformedMntmVender(e);
 		}
@@ -229,4 +241,11 @@ public class Main extends JFrame implements ActionListener {
 		vd.setLocationRelativeTo(this);
 		vd.setVisible(true);
 	}
+	
+	protected void actionPerformedMntmGenReport(ActionEvent e) {
+		GenerarReportes gr = new GenerarReportes();
+		gr.setLocationRelativeTo(this);
+		gr.setVisible(true);
+	}
+	
 }

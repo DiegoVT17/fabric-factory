@@ -156,6 +156,12 @@ public class Vender extends JFrame implements ActionListener {
 		salePay = calcSaleOff(cantMet, partPay);
 		totalPay = calcTotalPay(partPay, salePay);
 		
+		// cuenta la cantidad de clientes
+		clienteCont++;
+		
+		// ejecutar contadores para reporte
+		execCounters(codIndex, cantMet, totalPay);
+		
 		printVoucher(codIndex, cantMet, partPay, salePay, totalPay);
 	}
 	
@@ -182,6 +188,36 @@ public class Vender extends JFrame implements ActionListener {
 		}
 	}
 	
+	void execCounters(int codIndex, double cantMet, double totalPay) {
+		switch (codIndex) {
+		case 0:
+			ventas0++;
+			cantMetros0 += cantMet;
+			impTotal0 += totalPay;
+			break;
+		case 1:
+			ventas1++;
+			cantMetros1 += cantMet;
+			impTotal1 += totalPay;
+			break;
+		case 2:
+			ventas2++;
+			cantMetros2 += cantMet;
+			impTotal2 += totalPay;
+			break;
+		case 3:
+			ventas3++;
+			cantMetros3 += cantMet;
+			impTotal3 += totalPay;
+			break;
+		default:
+			ventas4++;
+			cantMetros4 += cantMet;
+			impTotal4 += totalPay;
+			break;
+		}
+	}
+	
 	void setDescText(int codIndex) {
 		switch (codIndex) {
 		case 0:
@@ -200,6 +236,14 @@ public class Vender extends JFrame implements ActionListener {
 			txtDescripcion.setText(material4);
 			break;
 		}
+	}
+	
+	void printObsequio(double cantMet) {
+		if (cantMet > cantidadObsequiable) print("Obsequio\t\t : " + obsequio);
+	}
+	
+	void printPremioSorp() {
+		if (clienteCont == 5) print("Premio sopresa \t\t: " + premioSorpresa);
 	}
 	
 	double calcSaleOff(double cantMet, double partPay) {
@@ -244,8 +288,11 @@ public class Vender extends JFrame implements ActionListener {
 		print("Precio de Tela \t\t: S/. " + precio);
 		print("Cantidad de metros \t: " + cantMet);
 		print("Importe de Compra \t: " + String.format("S/. %.2f", partPay));
-		print("Importe Descuento \t: " + String.format("S/. %.2f", salePay) + "\n");
-		print("Importe a Pagar \t\t: " + String.format("S/. %.2f", totalPay));
+		print("Importe Descuento \t: " + String.format("S/. %.2f", salePay));
+		printObsequio(cantMet);
+		printPremioSorp();
+		print("\nImporte a Pagar \t\t: " + String.format("S/. %.2f", totalPay));
+		
 	}
 	
 }
